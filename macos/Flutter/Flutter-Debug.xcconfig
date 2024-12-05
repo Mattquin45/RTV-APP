@@ -1,1 +1,86 @@
-#include "ephemeral/Flutter-Generated.xcconfig"
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(RehearseTheVerseApp());
+}
+
+class RehearseTheVerseApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Rehearse The Verse',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomeScreen(),
+    );
+  }
+}
+
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    VerseMemorizationScreen(),
+    MusicScreen(),
+    JournalScreen(),
+    CommunityScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Rehearse The Verse'),
+      ),
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Verses'),
+          BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Music'),
+          BottomNavigationBarItem(icon: Icon(Icons.edit), label: 'Journal'),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Community'),
+        ],
+      ),
+    );
+  }
+}
+
+class VerseMemorizationScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('Verse Memorization Section'));
+  }
+}
+
+class MusicScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('Music Section'));
+  }
+}
+
+class JournalScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('Journal Section'));
+  }
+}
+
+class CommunityScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('Community Section'));
+  }
+}
