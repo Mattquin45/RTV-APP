@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/components/theButton.dart';
+import 'package:flutter_application_2/components/theTextField.dart';
+import 'package:flutter_application_2/components/squareTile.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  //sign the user in
+  void signUserIn() {}
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +19,7 @@ class LoginPage extends StatelessWidget {
             child: Center(
                 child: Column(
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 30),
         //logo
         Icon(
           Icons.cloud,
@@ -19,7 +28,7 @@ class LoginPage extends StatelessWidget {
 
         //Sign IN/Hi there! Nice to see you again.
         SizedBox(height: 10),
-        Text('Rehearse The Verse.',
+        Text('Rehearse The Verse',
             style: TextStyle(
               fontSize: 20,
             )),
@@ -41,67 +50,109 @@ class LoginPage extends StatelessWidget {
               right: 110.0), // Adjust the left value as needed
           child: Text(
             'Hi there! Nice to see you again.',
+            style: TextStyle(
+              color: Colors.grey[600],
+            ),
           ),
         ),
 
         //email
         SizedBox(height: 30),
-        Padding(
-            padding: const EdgeInsets.only(right: 287.0),
-            child: Text(
-              'Email',
-              style: TextStyle(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+        //Padding(
+        //  padding: const EdgeInsets.only(right: 287.0),
+        //  child: Text(
+        //'Email',
+        //style: TextStyle(
+        //  color: Colors.redAccent,
+        //  fontWeight: FontWeight.bold,
+        //),
+        //  )),
         //the input
-        SizedBox(
-          width: 330,
-          child: TextField(
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 9),
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey)),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey)),
-            ),
-          ),
+        Mytext(
+          controller: usernameController,
+          hintText: 'Username',
+          obscureText: false,
         ),
 
         //password
         SizedBox(height: 40),
-        Padding(
-            padding: const EdgeInsets.only(right: 258.0),
-            child: Text(
-              'Password',
-              style: TextStyle(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+        // Padding(
+        //padding: const EdgeInsets.only(right: 258.0),
+        //  child: Text(
+        //   'Password',
+        //  style: TextStyle(
+        //    color: Colors.redAccent,
+        //    fontWeight: FontWeight.bold,
+        //  ),
+        //  )),
         //input
-        SizedBox(
-          width: 330,
-          child: TextField(
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 9),
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey)),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey)),
-            ),
-          ),
+        Mytext(
+          controller: passwordController,
+          hintText: 'Password',
+          obscureText: true,
         ),
 
         //sign in button
+        SizedBox(height: 40),
+
+        MyButton(
+          onTap: signUserIn,
+        ),
 
         //or use one of your social media profiles
+        SizedBox(height: 30),
 
+        Row(
+          children: [
+            Expanded(
+              child: Divider(
+                thickness: 0.5,
+                color: Colors.grey[400],
+              ),
+            ),
+            Text(
+              'or continue with',
+              style: TextStyle(color: Colors.grey[600]),
+            ),
+            Expanded(
+              child: Divider(
+                thickness: 0.5,
+                color: Colors.grey[400],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 30),
         //twitter/facebook
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            //x
+            Squaretile(imagePath: 'lib/images/X_logo.png'),
 
+            SizedBox(width: 100),
+
+            //facebook
+            Squaretile(imagePath: 'lib/images/Facebook_logo_(square).png'),
+          ],
+        ),
+        SizedBox(
+          height: 30,
+        ),
         //forgot password?/sign up
+
+        Padding(
+          padding: const EdgeInsets.only(
+              right: 230.0), // Adjust the left value as needed
+          child: Text(
+            'Forgot password?',
+            style: TextStyle(
+              color: Colors.grey[600],
+            ),
+          ),
+        ),
       ],
     ))));
   }
 }
+
